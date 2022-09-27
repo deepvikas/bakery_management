@@ -30,7 +30,7 @@ class Product(models.Model):
     selling_price = models.FloatField()
     description = models.CharField(max_length=200)
     barcode = models.CharField(max_length=200)
-    quantity = models.CharField(max_length=200)
+    quantity = models.IntegerField()
     discount_id = models.ForeignKey(Discount, on_delete=models.SET_NULL, null=True)
 
 
@@ -40,6 +40,6 @@ class Order(models.Model):
     quantity = models.IntegerField()
     user_id = models.ForeignKey(BakeryUser, on_delete=models.SET_NULL, null=True)
     amount = models.FloatField()
-    order_data = models.DateTimeField(default=timezone.now)
+    order_date = models.DateTimeField(default=timezone.now)
 
 

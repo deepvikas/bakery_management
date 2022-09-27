@@ -3,9 +3,11 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from users.views import Authenticate
 from users.models import BakeryUser
-from .models import Product
-from .serializers import ProductSerializer
+from .models import Product, Order
+from .serializers import ProductSerializer, OrderSerializer
 # Create your views here.
+
+import datetime
 
 import logging
 
@@ -64,7 +66,7 @@ class DeleteItemView(APIView):
         res_access = auth.check_admin(user)
         if not res_access.get('status'):
             return Response(res_access)
-        tem = Product.objects.filter(id=request.data['id']).first()
+        item = Product.objects.filter(id=request.data['id']).first()
         item.delete()
         return Response({
             'status': True,
@@ -74,9 +76,9 @@ class DeleteItemView(APIView):
 class UpdateQuantity(APIView):
 
     def put(self, request):
-        if not request.data.get('id') or not request.data.get('new_quantity'):
+        if not request.data.get('id') or not request.data.get('quantity'):
             return Response({
-                'message': 'Required Parameter Id or new_quantity is missing.'
+                'message': 'Required Parameter Id or quantity is missing.'
             })
         
         auth = Authenticate()
@@ -89,14 +91,63 @@ class UpdateQuantity(APIView):
         if not res_access.get('status'):
             return Response(res_access)
         product = Product.objects.filter(
-            id=request.data.get('id')
-        ).first()
-        if not product:
-            return Response({"message": 'Product does not exist.'})
-        serializer = ProductSerializer(product, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response({
-            'message': 'Something Went Wrong'
-        })
+            pk=request.data.get('id')).first()
+        product.quantity = request.data.get('quantity')
+        product.save()
+        serializer = ProductSerializer(product)
+        return Response(serializer.data)
+
+class ShopDetialView(APIView):
+
+    def get(self, request):
+        auth = Authenticate()
+        res = auth.check_authentication(request)
+        if not res.get('status'):
+            return Response(res)
+        product = Product.objects.filter(quantity__gt=0)
+        _logger.info(product)
+        serializer = ProductSerializer(product, many=True)
+        return Response(serializer.data)
+
+class CreateOrderView(APIView):
+
+    def post(self, request):
+        if not request.data.get('product_id') or not request.data.get('quantity'):
+            return Response({
+                'message': 'Product Id or Quantity is missing.'
+            })
+        auth = Authenticate()
+        res = auth.check_authentication(request)
+        if not res.get('status'):
+            return Response(res)
+        payload = res.get('result')        
+        user = BakeryUser.objects.filter(id=payload['id']).first()
+        product = Product.objects.filter(pk=request.data.get('product_id')).first()
+        total_amount = product.selling_price * int(request.data.get('quantity'))
+        vals = {
+            'product_id': product.id,
+            'quantity': int(request.data.get('quantity')),
+            'user_id': user.id,
+            'amount': total_amount
+        }
+        order = OrderSerializer(data=vals)
+        order.is_valid(raise_exception=True)
+        order.save()
+        response = {
+            'message': 'Order Placed',
+            'total_amount': total_amount
+        }
+        return Response(response)
+
+class OrderHistoryView(APIView):
+
+    def get(self, request):
+        auth = Authenticate()
+        res = auth.check_authentication(request)
+        if not res.get('status'):
+            return Response(res)
+        payload = res.get('result')        
+        history = Order.objects.filter(user_id=payload['id'])
+        orders = OrderSerializer(history, many=True)
+        return Response(orders.data)
+        
