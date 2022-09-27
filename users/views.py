@@ -105,7 +105,7 @@ class LogoutView(APIView):
 
 class ShowUsersView(APIView):
     
-    def post(self, request):
+    def get(self, request):
         auth = Authenticate()
         res = auth.check_authentication(request)
         if not res.get('status'):

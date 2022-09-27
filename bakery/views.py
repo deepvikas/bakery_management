@@ -52,10 +52,10 @@ class GetItemsView(APIView):
 class DeleteItemView(APIView):
 
     def post(self, request):
-        if not request.data.get('id'):
+        if not request.data.get('product_id'):
             return Response({
                 'status': False,
-                'message': 'Required id Parameter is missing in payload.'
+                'message': 'Required product_id Parameter is missing in payload.'
             })
         auth = Authenticate()
         res = auth.check_authentication(request)
@@ -66,7 +66,7 @@ class DeleteItemView(APIView):
         res_access = auth.check_admin(user)
         if not res_access.get('status'):
             return Response(res_access)
-        item = Product.objects.filter(id=request.data['id']).first()
+        item = Product.objects.filter(id=request.data['product_id']).first()
         item.delete()
         return Response({
             'status': True,
@@ -76,9 +76,9 @@ class DeleteItemView(APIView):
 class UpdateQuantity(APIView):
 
     def put(self, request):
-        if not request.data.get('id') or not request.data.get('quantity'):
+        if not request.data.get('product_id') or not request.data.get('quantity'):
             return Response({
-                'message': 'Required Parameter Id or quantity is missing.'
+                'message': 'Required Parameter product_id or quantity is missing.'
             })
         
         auth = Authenticate()
@@ -91,7 +91,11 @@ class UpdateQuantity(APIView):
         if not res_access.get('status'):
             return Response(res_access)
         product = Product.objects.filter(
-            pk=request.data.get('id')).first()
+            pk=request.data.get('product_id')).first()
+        if not product:
+            return Response({
+                'message': 'Product Not available'
+            })
         product.quantity = request.data.get('quantity')
         product.save()
         serializer = ProductSerializer(product)
@@ -122,7 +126,11 @@ class CreateOrderView(APIView):
             return Response(res)
         payload = res.get('result')        
         user = BakeryUser.objects.filter(id=payload['id']).first()
-        product = Product.objects.filter(pk=request.data.get('product_id')).first()
+        product = Product.objects.filter(pk=request.data.get('product_id')).filter(quantity__gt=0).first()
+        if not product:
+            return Response({
+                'message' : 'Product Not available.'
+            })
         total_amount = product.selling_price * int(request.data.get('quantity'))
         vals = {
             'product_id': product.id,
@@ -133,6 +141,8 @@ class CreateOrderView(APIView):
         order = OrderSerializer(data=vals)
         order.is_valid(raise_exception=True)
         order.save()
+        product.quantity -= vals['quantity']
+        product.save()
         response = {
             'message': 'Order Placed',
             'total_amount': total_amount
