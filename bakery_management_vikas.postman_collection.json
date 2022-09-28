@@ -1,0 +1,774 @@
+{
+	"info": {
+		"_postman_id": "6cff3f0e-f5b0-4f31-9ea8-ff213f6957dc",
+		"name": "bakery_management_vikas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Admin Signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "book_name",
+							"value": "My book5",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "authot_name",
+							"value": "New Author2",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "price",
+							"value": "200.0",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "per_day_charge",
+							"value": "10",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "copies",
+							"value": "12",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "quantity",
+							"value": "4",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "product_id",
+							"value": "2",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "text"
+						},
+						{
+							"key": "user_type",
+							"value": "customer",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "id",
+							"value": "3",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "username",
+							"value": "Vikas",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "quantity",
+							"value": "7",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "user_type",
+							"value": "admin",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "{",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "product_4",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "cost_price",
+							"value": "12.0",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "selling_price",
+							"value": "25.0",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "description",
+							"value": "prod_4",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "barcode",
+							"value": "1234",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "quantity",
+							"value": "10",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "},",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "{",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "product_5",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "cost_price",
+							"value": "12.0",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "selling_price",
+							"value": "25.0",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "barcode",
+							"value": "12345",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/signup/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"signup",
+						""
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "admin",
+							"description": "u",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "admin",
+							"description": "u",
+							"disabled": true
+						},
+						{
+							"key": "user_type",
+							"value": "admin",
+							"description": "u",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Signup API for Admin"
+			},
+			"response": []
+		},
+		{
+			"name": "Customer Signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "customer_7",
+							"type": "default"
+						},
+						{
+							"key": "username",
+							"value": "customer_7",
+							"type": "default"
+						},
+						{
+							"key": "user_type",
+							"value": "customer",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/signup/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"signup",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "default"
+						},
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/login/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"login",
+						""
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "admin",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "admin",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout User",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "default"
+						},
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/logout/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"logout",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Users List",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "default",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/show/users/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"show",
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "customer_6",
+							"type": "default"
+						},
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "default",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/delete/user/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"delete",
+						"user",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Item in bakery",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Milk",
+							"type": "default"
+						},
+						{
+							"key": "cost_price",
+							"value": "25",
+							"type": "default"
+						},
+						{
+							"key": "selling_price",
+							"value": "30",
+							"type": "default"
+						},
+						{
+							"key": "description",
+							"value": "Fresh Milk",
+							"type": "default"
+						},
+						{
+							"key": "quantity",
+							"value": "8",
+							"type": "default"
+						},
+						{
+							"key": "barcode",
+							"value": "901212",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/add/items/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"add",
+						"items",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Items",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "default",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/all/items/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"all",
+						"items",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Item",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "product_id",
+							"value": "4",
+							"type": "default"
+						},
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "default",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/delete/item/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"delete",
+						"item",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update quantity",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "product_id",
+							"value": "3",
+							"type": "default"
+						},
+						{
+							"key": "quantity",
+							"value": "7",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/update/quantity/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"update",
+						"quantity",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all Available products",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "default",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/shop/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"shop",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Place Order",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "product_id",
+							"value": "3",
+							"type": "default"
+						},
+						{
+							"key": "quantity",
+							"value": "2",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/shop/order/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"shop",
+						"order",
+						""
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "admin",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "admin",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Order History",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "default",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/order/history/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"order",
+						"history",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
