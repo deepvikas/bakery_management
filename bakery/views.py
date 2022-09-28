@@ -3,8 +3,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from users.views import Authenticate
 from users.models import BakeryUser
-from .models import Product, Order
-from .serializers import ProductSerializer, OrderSerializer
+from .models import Product, Order, Discount
+from .serializers import ProductSerializer, OrderSerializer, DiscountSerializer
 # Create your views here.
 
 import datetime
@@ -160,4 +160,45 @@ class OrderHistoryView(APIView):
         history = Order.objects.filter(user_id=payload['id'])
         orders = OrderSerializer(history, many=True)
         return Response(orders.data)
-        
+
+
+class AddDiscountView(APIView):
+
+    def post(self, request):
+        auth = Authenticate()
+        res = auth.check_authentication(request)
+        if not res.get('status'):
+            return Response(res)
+        payload = res.get('result')
+        user = BakeryUser.objects.filter(id=payload['id']).first()        
+        res_access = auth.check_admin(user)
+        if not res_access.get('status'):
+            return Response(res_access)
+        serializer = DiscountSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
+
+class ToggleDiscountView(APIView):
+
+    def post(self, request):
+        if not request.data.get('discount_id') or not request.data.get('discount_status'):
+            return Response({
+                'message': 'Required key discount_id or discount_status is missing.'
+            })
+        auth = Authenticate()
+        res = auth.check_authentication(request)
+        if not res.get('status'):
+            return Response(res)
+        payload = res.get('result')
+        user = BakeryUser.objects.filter(id=payload['id']).first()        
+        res_access = auth.check_admin(user)
+        if not res_access.get('status'):
+            return Response(res_access)
+        discount = Discount.objects.filter(pk=request.data.get('discount_id'))
+        discount.is_enable = request.data.get('discount_status')
+        discount.save()
+        serializer = DiscountSerializer(data=discount)
+        return Response(serializer.data)
+
+
